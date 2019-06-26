@@ -1,6 +1,6 @@
 {
 	"name": "jactools",
-	"version": "1.0.0",
+	"version": "1.0.10",
 	"description": "",
 	"main": "dist/index.js",
 	"scripts": {
@@ -16,5 +16,11 @@
 		"moment": "^2.24.0",
 		"qs": "^6.7.0",
 		"vue": "^2.6.10"
+	},
+	"devDependencies": {
+		"@babel/polyfill": "^7.4.4",
+		"babel-core": "^6.26.3",
+		"babel-plugin-transform-runtime": "^6.23.0",
+		"babel-preset-env": "^1.7.0"
 	}
 }

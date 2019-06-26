@@ -1,8 +1,10 @@
-import _BaseRequest from './BaseRequest'
+import _BaseRequest from './lib/BaseRequest'
 import __ from 'lodash'
 import _moment from 'moment'
 import _Vue from 'vue'
 import qs from 'qs'
+
+import '@babel/polyfill'
 
 __.mixin(
 	{
@@ -30,6 +32,8 @@ _moment.fn.getDate = function() {
 _Vue.prototype.$open = function(url, title, config) {
 	window.open(url, title, qs.stringify(config).replace('&', ','))
 }
+_Vue.prototype.moment = _moment
+_Vue.prototype._ = __
 
 export const BaseRequest = _BaseRequest
 export const _ = __
