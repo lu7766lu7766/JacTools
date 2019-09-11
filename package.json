@@ -1,7 +1,8 @@
 {
 	"name": "jactools",
-	"version": "2.6.10.44",
+	"version": "2.6.10.46",
 	"description": "",
+	"main": "dist/index.js",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"//build": "webpack -p",
@@ -16,6 +17,8 @@
 		"qs": "^6.7.0"
 	},
 	"devDependencies": {
+		"@babel/core": "^7.6.0",
+		"@babel/plugin-transform-runtime": "^7.6.0",
 		"@babel/runtime": "^7.6.0"
 	}
 }
