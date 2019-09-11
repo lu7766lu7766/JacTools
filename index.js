@@ -1,4 +1,4 @@
-import _BaseRequest from './lib/BaseRequest'
+import _BaseRequest from './lib/iBaseRequest'
 import _JacPlugin from './lib/JacPlugin'
 
 export const iBaseRequest = _BaseRequest
