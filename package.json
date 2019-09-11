@@ -1,6 +1,6 @@
 {
 	"name": "jactools",
-	"version": "2.6.10.43",
+	"version": "2.6.10.44",
 	"description": "",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
