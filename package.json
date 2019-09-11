@@ -1,6 +1,6 @@
 {
 	"name": "jactools",
-	"version": "2.6.10.39",
+	"version": "2.6.10.40",
 	"description": "",
 	"main": "dist/index.js",
 	"scripts": {
