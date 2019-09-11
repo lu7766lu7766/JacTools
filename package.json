@@ -1,14 +1,13 @@
 {
 	"name": "jactools",
-	"version": "2.6.10.46",
+	"version": "2.6.10.50",
 	"description": "",
 	"main": "dist/index.js",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"//build": "webpack -p",
 		"build": "parcel build index.js",
-		"//dev": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
-		"////build": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
+		"////build": "rollup index.js -o dist/index.js -f cjs"
 	},
 	"author": "Jac",
 	"license": "ISC",
