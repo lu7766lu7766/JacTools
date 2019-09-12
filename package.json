@@ -1,13 +1,13 @@
 {
 	"name": "jactools",
-	"version": "2.6.10.50",
+	"version": "2.6.10.51",
 	"description": "",
 	"main": "dist/index.js",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"//build": "webpack -p",
-		"build": "parcel build index.js",
-		"////build": "rollup index.js -o dist/index.js -f cjs"
+		"///build": "parcel build index.js",
+		"build": "rollup index.js --file dist/index.js --format es --name 'index'"
 	},
 	"author": "Jac",
 	"license": "ISC",
