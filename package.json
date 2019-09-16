@@ -1,23 +1,27 @@
 {
 	"name": "jactools",
-	"version": "2.6.10.52",
+	"version": "2.6.10.56",
 	"description": "",
 	"main": "dist/index.js",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"//build": "webpack -p",
 		"///build": "parcel build index.js",
-		"build": "rollup index.js --file dist/index.js --format es --name 'index'"
+		"////build": "rollup index.js --file dist/index.js --format es --name 'index'",
+		"build": "rollup -c ./rollup.config.js"
 	},
 	"author": "Jac",
 	"license": "ISC",
 	"dependencies": {
 		"axios": "^0.19.0",
+		"lodash": "^4.17.15",
 		"qs": "^6.7.0"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.6.0",
-		"@babel/plugin-transform-runtime": "^7.6.0",
-		"@babel/runtime": "^7.6.0"
+		"@babel/preset-env": "^7.6.0",
+		"@babel/runtime": "^7.6.0",
+		"babel-loader": "^8.0.6",
+		"rollup-plugin-babel": "^4.3.3"
 	}
 }
