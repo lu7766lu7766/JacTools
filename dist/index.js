@@ -251,7 +251,7 @@ function () {
   _createClass(iBaseRequest, [{
     key: "axiosInit",
     value: function axiosInit() {
-      axios.defaults.baseURL = this.host || "/";
+      axios.defaults.baseURL = this.host;
       axios.interceptors.response.use(function (response) {
         return response;
       }, function (error) {
@@ -259,9 +259,19 @@ function () {
       });
     }
   }, {
+    key: "host",
+    get: function get() {
+      return '/';
+    }
+  }, {
     key: "baseUrls",
     get: function get() {
       return [];
+    }
+  }, {
+    key: "resultKey",
+    get: function get() {
+      return 'code';
     }
   }]);
 
@@ -367,7 +377,7 @@ function () {
   }, {
     key: "resultHandle",
     value: function resultHandle(res, options) {
-      var errorMessages = this.resultMessageHandle(res);
+      var errorMessages = this.codeHandle(res);
       var successF = options.success || options.s;
       var failF = options.fail || options.f;
 
@@ -388,44 +398,50 @@ function () {
       }
     }
     /**
-    * 處理api回傳訊息
+     * 錯誤碼處理
      * @param res
      * @returns {Array}
      */
 
   }, {
-    key: "resultMessageHandle",
-    value: function resultMessageHandle(res) {
+    key: "codeHandle",
+    value: function codeHandle(res) {
       var _this = this;
 
       var errorMessages = [];
+      var codes = res.data[this.resultKey];
 
-      if (this.codeHandle) {
-        // custom
-        errorMessages = this.codeHandle(res);
-      } else {
-        // default
-        switch (_typeof(res.data.code)) {
-          case 'object':
-            _$1.forEach(res.data.code, function (code) {
-              if (_this.SuccessCodes.indexOf(code) === -1) {
-                errorMessages.push(_this.ErrorCodes && _this.ErrorCodes[code] ? _this.ErrorCodes[code] : 'system error!!');
-              }
-            });
-
-            break;
-
-          case 'string':
-          case 'number':
-            if (this.SuccessCodes.indexOf(res.data.code) === -1) {
-              errorMessages.push(this.ErrorCodes && this.ErrorCodes[code] ? this.ErrorCodes[code] : 'system error!!');
+      switch (_typeof(codes)) {
+        case 'object':
+          _$1.forEach(codes, function (code) {
+            if (_this.SuccessCodes.indexOf(code) === -1) {
+              errorMessages.push(_this.getErrorMessage[code]);
             }
+          });
 
-            break;
-        }
+          break;
+
+        case 'string':
+        case 'number':
+          if (this.SuccessCodes.indexOf(codes) === -1) {
+            errorMessages.push(this.getErrorMessage[codes]);
+          }
+
+          break;
       }
 
       return errorMessages;
+    }
+    /**
+    * 判空處理
+     * @param code
+     * @returns {string}
+     */
+
+  }, {
+    key: "getErrorMessage",
+    value: function getErrorMessage(code) {
+      return this.ErrorCodes && this.ErrorCodes[code] ? this.ErrorCodes[code] : 'system error!!';
     }
     /**
     * 處理request錯誤
