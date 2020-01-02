@@ -245,6 +245,34 @@ function roopParse(val) {
   }
 }
 
+var readImage = function readImage(file) {
+  return new Promise(function (resolve, reject) {
+    var reader = new FileReader();
+    reader.readAsDataURL(file);
+
+    reader.onload = function (e) {
+      resolve(e.target.result);
+    };
+
+    reader.onerror = function (e) {
+      throw 'image convert to url error';
+      reject(e);
+    };
+  });
+};
+
+var getAllSubNodeID = function getAllSubNodeID(datas) {
+  var key = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'nodes';
+  return _.reduce(_.pickBy(datas), function (result, data) {
+    return result.concat(data[key] ? getAllSubNodeID(data[key]) : [data.id]);
+  }, []);
+};
+
+var _JacLib = {
+  readImage: readImage,
+  getAllSubNodeID: getAllSubNodeID
+};
+
 var iBaseRequest =
 /*#__PURE__*/
 function () {
@@ -528,8 +556,9 @@ var _JacPlugin = {
 };
 
 var iBaseRequest$1 = iBaseRequest;
-var JacPlugin = _JacPlugin; // import iBaseRequest from './lib/iBaseRequest'
+var JacPlugin = _JacPlugin;
+var JacLib = _JacLib; // import iBaseRequest from './lib/iBaseRequest'
 // import JacPlugin from './lib/JacPlugin'
 // export {iBaseRequest, JacPlugin}
 
-export { JacPlugin, iBaseRequest$1 as iBaseRequest };
+export { JacLib, JacPlugin, iBaseRequest$1 as iBaseRequest };
