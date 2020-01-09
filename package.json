@@ -1,6 +1,6 @@
 {
 	"name": "jactools",
-	"version": "3.0.0",
+	"version": "3.1.0",
 	"description": "",
 	"main": "dist/index.js",
 	"scripts": {
@@ -8,8 +8,7 @@
 		"//build": "webpack -p",
 		"///build": "parcel build index.js",
 		"////build": "rollup index.js --file dist/index.js --format es --name 'index'",
-		"build": "rollup -c ./rollup.config.js",
-		"publish": "npm publish"
+		"build": "rollup -c ./rollup.config.js"
 	},
 	"author": "Jac",
 	"license": "ISC",

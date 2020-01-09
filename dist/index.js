@@ -522,6 +522,12 @@ var _JacPlugin = {
           var res = _.head(_(data).at(prop).value());
 
           return !_.isUndefined(res) ? res : defaultVal;
+        },
+        keyVal: function keyVal(datas, key, value) {
+          return _.reduce(datas, function (result, data) {
+            result[data[key]] = data[value];
+            return result;
+          }, {});
         }
       }, {
         chain: false
