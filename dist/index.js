@@ -2,6 +2,7 @@ import qs from 'qs';
 import axios from 'axios';
 import _$1 from 'lodash';
 import path from 'path';
+import { Decimal } from 'decimal.js';
 
 function _typeof(obj) {
   if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
@@ -558,6 +559,16 @@ var _JacPlugin = {
     Vue.prototype.$open = function (url, title, config) {
       window.open(url, title, qs.stringify(config).replace('&', ','));
     };
+
+    Vue.prototype.$decimal = function (value) {
+      return new Decimal(value);
+    };
+
+    Decimal.prototype.value = Decimal.prototype.toNumber;
+    Decimal.prototype['+'] = Decimal.prototype.add;
+    Decimal.prototype['-'] = Decimal.prototype.sub;
+    Decimal.prototype['*'] = Decimal.prototype.mul;
+    Decimal.prototype['/'] = Decimal.prototype.div;
   }
 };
 
