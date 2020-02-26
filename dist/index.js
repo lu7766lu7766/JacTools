@@ -515,6 +515,16 @@ var _JacPlugin = {
     var _ = options._;
     var moment = options.moment;
 
+    Vue.prototype.$decimal = function (value) {
+      return new Decimal(value);
+    };
+
+    Decimal.prototype.value = Decimal.prototype.toNumber;
+    Decimal.prototype['+'] = Decimal.prototype.add;
+    Decimal.prototype['-'] = Decimal.prototype.sub;
+    Decimal.prototype['*'] = Decimal.prototype.mul;
+    Decimal.prototype['/'] = Decimal.prototype.div;
+
     if (_) {
       _.mixin({
         getVal: function getVal(data, prop) {
@@ -529,6 +539,11 @@ var _JacPlugin = {
             result[data[key]] = data[value];
             return result;
           }, {});
+        },
+        jSumBy: function jSumBy(datas, key) {
+          return _.reduce(datas, function (result, data) {
+            return new Decimal(result).add(data[key]).value();
+          }, 0);
         }
       }, {
         chain: false
@@ -559,16 +574,6 @@ var _JacPlugin = {
     Vue.prototype.$open = function (url, title, config) {
       window.open(url, title, qs.stringify(config).replace('&', ','));
     };
-
-    Vue.prototype.$decimal = function (value) {
-      return new Decimal(value);
-    };
-
-    Decimal.prototype.value = Decimal.prototype.toNumber;
-    Decimal.prototype['+'] = Decimal.prototype.add;
-    Decimal.prototype['-'] = Decimal.prototype.sub;
-    Decimal.prototype['*'] = Decimal.prototype.mul;
-    Decimal.prototype['/'] = Decimal.prototype.div;
   }
 };
 
