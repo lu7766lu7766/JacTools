@@ -262,6 +262,44 @@ var readImage = function readImage(file) {
   });
 };
 
+var readImageInstance = function readImageInstance(file) {
+  return new Promise(
+  /*#__PURE__*/
+  function () {
+    var _ref = _asyncToGenerator(
+    /*#__PURE__*/
+    regeneratorRuntime.mark(function _callee(resolve) {
+      var src, image;
+      return regeneratorRuntime.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return readImage(file);
+
+            case 2:
+              src = _context.sent;
+              image = new Image();
+              image.src = src;
+
+              image.onload = function () {
+                resolve(this);
+              };
+
+            case 6:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }));
+
+    return function (_x) {
+      return _ref.apply(this, arguments);
+    };
+  }());
+};
+
 var getAllSubNodeID = function getAllSubNodeID(datas) {
   var key = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'nodes';
   return _.reduce(_.pickBy(datas), function (result, data) {
@@ -271,7 +309,8 @@ var getAllSubNodeID = function getAllSubNodeID(datas) {
 
 var _JacLib = {
   readImage: readImage,
-  getAllSubNodeID: getAllSubNodeID
+  getAllSubNodeID: getAllSubNodeID,
+  readImageInstance: readImageInstance
 };
 
 var iBaseRequest =
