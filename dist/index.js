@@ -307,10 +307,16 @@ var getAllSubNodeID = function getAllSubNodeID(datas) {
   }, []);
 };
 
+var createID = function createID() {
+  var prefix = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+  return prefix + Math.round(Math.random() * 10000000);
+};
+
 var _JacLib = {
   readImage: readImage,
   getAllSubNodeID: getAllSubNodeID,
-  readImageInstance: readImageInstance
+  readImageInstance: readImageInstance,
+  createID: createID
 };
 
 var iBaseRequest =
