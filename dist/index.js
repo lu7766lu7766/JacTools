@@ -184,7 +184,8 @@ function createFormDataBody(datas) {
     // data.constructor == File
     if (_typeof(data) === 'object' && !(data instanceof File)) {
       for (var index in data) {
-        formData.append("".concat(key, "[").concat(index, "]"), data[index]);
+        var val = _.isNull(data[index]) || _.isUndefined(data[index]) ? '' : data[index];
+        formData.append("".concat(key, "[").concat(index, "]"), val);
       }
     } else {
       formData.append(key, data);
