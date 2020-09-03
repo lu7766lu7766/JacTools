@@ -1,8 +1,9 @@
 {
-	"name": "jactools",
-	"version": "3.5.1",
+	"name": "@lu7766lu7766/jactools",
+	"version": "3.5.2",
 	"description": "",
 	"main": "dist/index.js",
+	"repository": "git://github.com/lu7766lu7766/jactools.git",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"//build": "webpack -p",
