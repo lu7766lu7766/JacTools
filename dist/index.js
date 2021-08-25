@@ -258,7 +258,6 @@ var readImage = function readImage(file) {
 
     reader.onerror = function (e) {
       throw 'image convert to url error';
-      reject(e);
     };
   });
 };
@@ -320,7 +319,7 @@ var _JacLib = {
   createID: createID
 };
 
-var iBaseRequest =
+var iBaseRequest$1 =
 /*#__PURE__*/
 function () {
   _createClass(iBaseRequest, [{
@@ -533,21 +532,18 @@ function () {
             res: res.data.error,
             msg: 'page not found'
           };
-          break;
 
         case 500:
           throw {
             res: res.data.error,
             msg: 'api crashed'
           };
-          break;
 
         default:
           // alert(msg)
           throw _objectSpread2({
             message: errorMessages.join('\n')
           }, res);
-          break;
       }
     }
   }]);
@@ -588,7 +584,7 @@ var _JacPlugin = {
         },
         jSumBy: function jSumBy(datas, key) {
           return _.reduce(datas, function (result, data) {
-            return new Decimal(result).add(data[key]).value();
+            return new Decimal(result).add(data[key] || 0).value();
           }, 0);
         }
       }, {
@@ -623,10 +619,10 @@ var _JacPlugin = {
   }
 };
 
-var iBaseRequest$1 = iBaseRequest;
+var iBaseRequest = iBaseRequest$1;
 var JacPlugin = _JacPlugin;
 var JacLib = _JacLib; // import iBaseRequest from './lib/iBaseRequest'
 // import JacPlugin from './lib/JacPlugin'
 // export {iBaseRequest, JacPlugin}
 
-export { JacLib, JacPlugin, iBaseRequest$1 as iBaseRequest };
+export { JacLib, JacPlugin, iBaseRequest };
